@@ -52,6 +52,9 @@ $date=$_GET['date'];
 $balance=0;
 $advance1=0;
 
+
+
+
 $sql="select * from teacher where index_number='$index'";
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);

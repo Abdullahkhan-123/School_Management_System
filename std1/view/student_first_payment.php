@@ -85,11 +85,23 @@ while($row=mysqli_fetch_assoc($result)){
                                 <div class="col-xs-5 col-xs-offset-2 text-right msk-t">
                                 	<br>
 <?php                                	
-$sql2="SELECT * FROM student_payment ORDER BY id DESC LIMIT 1";
-$result2=mysqli_query($conn,$sql2);
-$row2=mysqli_fetch_assoc($result2);
-$id2=$row2['id'];
-$inv_number=$id2+1; 
+// $sql2="SELECT * FROM student_payment ORDER BY id DESC LIMIT 1";
+// $result2=mysqli_query($conn,$sql2);
+// $row2=mysqli_fetch_assoc($result2);
+// $id2=$row2['id'];
+// $inv_number=$id2+1;
+
+$sql2 = "SELECT * FROM student_payment ORDER BY id DESC LIMIT 1";
+$result2 = mysqli_query($conn, $sql2);
+
+if ($result2 && mysqli_num_rows($result2) > 0) {
+    $row2 = mysqli_fetch_assoc($result2);
+    $id2 = $row2['id'];
+    $inv_number = $id2 + 1;
+} else {
+    // Handle the case where the query didn't return any results
+    $inv_number = 1; // Set a default value, or handle it as needed
+}
 ?>                                    
                                 	<h3>INVOICE - #<?php echo $inv_number; ?></h3>
                                     <div class="text-right">

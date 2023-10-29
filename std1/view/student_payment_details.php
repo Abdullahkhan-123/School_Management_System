@@ -162,8 +162,10 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                                             </tr>
                                             <tr>
                                                 <td>Due Amount </td>
+                                                <!-- <td id="dueAmount">$<?php echo $due; ?> </td> -->
                                                 
-                                                <td id="dueAmount">$<?php echo $due; ?> </td>
+                                                <td id="dueAmount">$<?php echo isset($due) ? $due : 0; ?> </td>
+                                                
                                             </tr>
                                         </tbody>
                                     </table>

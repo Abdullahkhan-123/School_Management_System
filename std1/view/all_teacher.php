@@ -1635,9 +1635,12 @@ function printINV(id,invoice_number,desc,total_salary,paid){
     
     </div>
     
+
+	<!-- View Employee Salary  -->
     <div id="viewInvoice">
     
     </div>
+	<!-- View Employee Salary -->
 
 
 <script>
@@ -1719,7 +1722,9 @@ function showModal3(viewINV){
 				if(desc == 'Advance'){
 					
 					$('#trBalance1').hide();
-					document.getElementById('spanTotal1').innerHTML = 'NaN';
+					// document.getElementById('spanTotal1').innerHTML = 'NaN';
+					document.getElementById('spanTotal1').innerHTML = '$' + total_salary;
+
 					document.getElementById('spanBalance1').innerHTML = 'NaN';
 				}
 				if(desc == 'Total Salary'){

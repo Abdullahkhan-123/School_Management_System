@@ -243,7 +243,7 @@ $monthly_income=$row3['SUM(paid)'];
 
 ?>             
         
-              <span class="info-box-number"><small>$</small><?php echo $monthly_income; ?></span>
+              <span class="info-box-number"><small>$</small><?php echo isset($monthly_income) ? $monthly_income : 0; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -268,7 +268,7 @@ $total_income=$row4['SUM(paid)'];
 
 ?>             
         
-              <span class="info-box-number"><small>$</small><?php echo $total_income; ?></span>
+              <span class="info-box-number"><small>$</small><?php echo isset($total_income) ? $total_income : 0; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

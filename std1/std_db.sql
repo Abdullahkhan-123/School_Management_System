@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2023 at 02:39 AM
+-- Generation Time: Oct 29, 2023 at 11:39 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -84,9 +84,9 @@ CREATE TABLE `class_room` (
 --
 
 INSERT INTO `class_room` (`id`, `name`, `student_count`) VALUES
-(26, 'Class 1', 15),
-(27, 'Class 2', 25),
-(28, 'Class 3', 18);
+(29, 'Class 1', 15),
+(30, 'Class 2', 25),
+(31, 'Class 3', 55);
 
 -- --------------------------------------------------------
 
@@ -148,7 +148,7 @@ CREATE TABLE `exam` (
 --
 
 INSERT INTO `exam` (`id`, `name`) VALUES
-(7, 'Mid Exam');
+(8, 'Mid Exam');
 
 -- --------------------------------------------------------
 
@@ -170,11 +170,21 @@ CREATE TABLE `exam_range_grade` (
 --
 
 INSERT INTO `exam_range_grade` (`id`, `grade_id`, `mark_range`, `_from`, `_to`, `mark_grade`) VALUES
-(76, 16, '35-45', 35, 45, 'E'),
-(77, 16, '46-65', 46, 65, 'D'),
-(78, 16, '66-75', 66, 75, 'C'),
-(79, 16, '76-85', 76, 85, 'B'),
-(80, 16, '86-100', 86, 100, 'A');
+(82, 18, '35-45', 35, 45, 'E'),
+(83, 18, '46-55', 46, 55, 'D'),
+(84, 18, '56-65', 56, 65, 'C'),
+(85, 18, '66-75', 66, 75, 'B'),
+(86, 18, '76-100', 76, 100, 'A'),
+(87, 19, '35-55', 35, 55, 'E'),
+(88, 19, '56-65', 56, 65, 'D'),
+(89, 19, '66-75', 66, 75, 'C'),
+(90, 19, '76-85', 76, 85, 'B'),
+(91, 19, '86-100', 86, 100, 'A'),
+(92, 20, '35-45', 35, 45, 'E'),
+(93, 20, '46-55', 46, 55, 'D'),
+(94, 20, '56-68', 56, 68, 'C'),
+(95, 20, '68-78', 68, 78, 'B'),
+(96, 20, '79-100', 79, 100, 'A');
 
 -- --------------------------------------------------------
 
@@ -198,7 +208,8 @@ CREATE TABLE `exam_timetable` (
 --
 
 INSERT INTO `exam_timetable` (`id`, `grade_id`, `exam_id`, `day`, `subject_id`, `classroom_id`, `start_time`, `end_time`) VALUES
-(1, 16, 7, 'Monday', 24, 26, 8.00, 9.00);
+(2, 18, 8, 'Monday', 27, 29, 9.00, 10.00),
+(3, 18, 8, 'Tuesday', 28, 29, 9.00, 10.00);
 
 -- --------------------------------------------------------
 
@@ -218,7 +229,9 @@ CREATE TABLE `grade` (
 --
 
 INSERT INTO `grade` (`id`, `name`, `admission_fee`, `hall_charge`) VALUES
-(16, 'Grade 1', 10000.00, 10);
+(18, 'Grade 1', 1500.00, 15),
+(19, 'Grade 2', 2500.00, 20),
+(20, 'Grade 3', 5000.00, 35);
 
 -- --------------------------------------------------------
 
@@ -259,8 +272,9 @@ CREATE TABLE `main_notifications` (
 --
 
 INSERT INTO `main_notifications` (`id`, `notification_id`, `_status`, `year`, `month`, `date`, `_isread`) VALUES
-(2, 2, 'Payments', 2023, 'October', '2023-10-29', 0),
-(3, 3, 'Payments', 2023, 'October', '2023-10-29', 0);
+(4, 4, 'Payments', 2023, 'October', '2023-10-29', 0),
+(5, 5, 'Payments', 2023, 'October', '2023-10-29', 0),
+(6, 6, 'Payments', 2023, 'October', '2023-10-29', 0);
 
 -- --------------------------------------------------------
 
@@ -278,20 +292,6 @@ CREATE TABLE `my_friends` (
   `friend_type` varchar(255) NOT NULL,
   `_isread` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `my_friends`
---
-
-INSERT INTO `my_friends` (`id`, `my_index`, `friend_index`, `_status`, `conversation_id`, `my_type`, `friend_type`, `_isread`) VALUES
-(5, 100, 1234, 'Friend', 1, 'Admin', 'Student', 1),
-(6, 1234, 100, 'Friend', 1, 'Student', 'Admin', 1),
-(7, 100, 1234, 'Friend', 7, 'Admin', 'Student', 1),
-(8, 1234, 100, 'Friend', 7, 'Student', 'Admin', 1),
-(9, 100, 123, 'Friend', 9, 'Admin', 'Teacher', 1),
-(10, 123, 100, 'Friend', 9, 'Teacher', 'Admin', 1),
-(11, 1234, 123, 'Friend_Request_Sent', 11, 'Student', 'Teacher', 0),
-(12, 123, 1234, 'Pending', 11, 'Teacher', 'Student', 0);
 
 -- --------------------------------------------------------
 
@@ -324,17 +324,6 @@ CREATE TABLE `online_chat` (
   `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `online_chat`
---
-
-INSERT INTO `online_chat` (`id`, `conversation_id`, `user_index`, `msg`, `user_type`, `_isread`, `date`, `time`) VALUES
-(1, 9, 123, 'abc', 'Teacher', 1, '2023-10-29', '02:14:59'),
-(2, 9, 100, 'how are you?', 'Admin', 1, '2023-10-29', '02:17:56'),
-(3, 9, 123, 'Fine', 'Teacher', 1, '2023-10-29', '02:18:04'),
-(4, 7, 1234, 'hello', 'Student', 1, '2023-10-29', '02:22:29'),
-(5, 7, 100, 'hey', 'Admin', 0, '2023-10-29', '02:22:43');
-
 -- --------------------------------------------------------
 
 --
@@ -364,7 +353,9 @@ CREATE TABLE `parents` (
 --
 
 INSERT INTO `parents` (`id`, `index_number`, `my_son_index`, `full_name`, `i_name`, `gender`, `address`, `phone`, `email`, `image_name`, `b_date`, `reg_date`, `reg_year`, `reg_month`, `_status`) VALUES
-(16, 'G-1234', 1234, 'father', 'father-12345', 'Male', 'latifabad', '314-782-8468', 'father@gmail.com', 'uploads/20231029124528.jpg', '0000-00-00', '2023-10-29', 2023, 'October', '');
+(18, 'G-1', 1, 'Student1 Father', 'Student1-Father-1', 'Male', 'City', '455-454-4545', 'Student1Father1@gmail.com', 'uploads/20231029101429.jpg', '0000-00-00', '2023-10-29', 2023, 'October', ''),
+(19, 'G-2', 2, 'Student2 Father', 'Student2Father-2', 'Male', 'City 2', '545-455-7845', 'Student2Father2@gmail.com', 'uploads/20231029102014.jpg', '0000-00-00', '2023-10-29', 2023, 'October', ''),
+(20, 'G-3', 3, 'Student3 Father3', 'Student3Father-3', 'Male', 'City 3', '541-641-1623', 'Student3Father3@gmail.com', 'uploads/20231029102255.jpg', '0000-00-00', '2023-10-29', 2023, 'October', '');
 
 -- --------------------------------------------------------
 
@@ -386,8 +377,9 @@ CREATE TABLE `payment_notifications` (
 --
 
 INSERT INTO `payment_notifications` (`id`, `index_number`, `year`, `month`, `date`, `_status`) VALUES
-(2, 1234, 2023, 'October', '2023-10-29', 1),
-(3, 1234, 2023, 'October', '2023-10-29', 1);
+(4, 1, 2023, 'October', '2023-10-29', 1),
+(5, 2, 2023, 'October', '2023-10-29', 1),
+(6, 3, 2023, 'October', '2023-10-29', 1);
 
 -- --------------------------------------------------------
 
@@ -413,7 +405,7 @@ CREATE TABLE `petty_cash` (
 --
 
 INSERT INTO `petty_cash` (`id`, `received_by`, `approved_by`, `year`, `month`, `date`, `time`, `paid`, `received_type`, `_status`) VALUES
-(3, 100, 100, 2023, 'October', '2023-10-29', '01:11:39', 500.00, 'Admin', 'Active');
+(4, 100, 100, 2023, 'October', '2023-10-29', '10:36:13', 1350.00, 'Admin', 'Active');
 
 -- --------------------------------------------------------
 
@@ -442,7 +434,8 @@ CREATE TABLE `petty_cash_history` (
 --
 
 INSERT INTO `petty_cash_history` (`id`, `_desc`, `received_by`, `approved_by`, `year`, `month`, `date`, `time`, `amount`, `total_paid`, `invoice_number`, `received_type`, `_status`) VALUES
-(3, 'Morning Petty', 100, 100, 2023, 'October', '2023-10-29', '01:11:39', 500.00, 500.00, 3, 'Admin', 'Active');
+(4, 'Exam Entry Fees', 100, 100, 2023, 'October', '2023-10-29', '10:36:13', 350.00, 1350.00, 4, 'Admin', 'Active'),
+(5, 'Petty Fees', 100, 100, 2023, 'October', '2023-10-29', '10:36:13', 1000.00, 1350.00, 4, 'Admin', 'Active');
 
 -- --------------------------------------------------------
 
@@ -472,7 +465,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `index_number`, `full_name`, `i_name`, `gender`, `address`, `phone`, `email`, `image_name`, `b_date`, `_status`, `reg_year`, `reg_month`, `reg_date`) VALUES
-(24, 1234, 'Student', 'student-1234', 'Male', 'latifabad', '314-782-8468', 'student@gmail.com', 'uploads/20231029124527.jpg', '0000-00-00', '', 2023, 'October', '2023-10-29');
+(26, 1, 'Student1', 'Student1-1', 'Male', 'City', '455-454-4545', 'Student1@gmail.com', 'uploads/20231029101428.jpeg', '0000-00-00', '', 2023, 'October', '2023-10-29'),
+(27, 2, 'Student2', 'Student2-2', 'Male', 'City 2', '545-566-5415', 'Student2@gmail.com', 'uploads/20231029102013.jpeg', '0000-00-00', '', 2023, 'October', '2023-10-29'),
+(28, 3, 'Student3', 'Student3-3', 'Male', 'City 3', '879-451-4512', 'Student3@gmail.com', 'uploads/20231029102254.jpeg', '0000-00-00', '', 2023, 'October', '2023-10-29');
 
 -- --------------------------------------------------------
 
@@ -496,8 +491,9 @@ CREATE TABLE `student_attendance` (
 --
 
 INSERT INTO `student_attendance` (`id`, `index_number`, `date`, `month`, `year`, `time`, `_status1`, `_status2`) VALUES
-(4, 1234, '2023-10-29', 'October', 2023, '01:07:39', 'intime', 'Present'),
-(5, 1234, '2023-10-29', 'October', 2023, '01:07:49', 'outtime', 'Present');
+(6, 1, '2023-10-29', 'October', 2023, '10:33:22', 'intime', 'Present'),
+(7, 2, '2023-10-29', 'October', 2023, '10:33:28', 'intime', 'Present'),
+(8, 3, '2023-10-29', 'October', 2023, '10:33:32', 'intime', 'Present');
 
 -- --------------------------------------------------------
 
@@ -534,7 +530,9 @@ CREATE TABLE `student_grade` (
 --
 
 INSERT INTO `student_grade` (`id`, `index_number`, `grade_id`, `year`) VALUES
-(100, 1234, 16, 2023);
+(103, 2, 19, 2023),
+(104, 3, 20, 2023),
+(108, 1, 19, 2023);
 
 -- --------------------------------------------------------
 
@@ -558,11 +556,18 @@ CREATE TABLE `student_payment` (
 --
 
 INSERT INTO `student_payment` (`id`, `index_number`, `year`, `month`, `date`, `paid`, `_status`, `student_status`) VALUES
-(245, 1234, 2023, 'October', '2023-10-29', 10.00, 'Admission Fee', ''),
-(246, 1234, 2023, 'October', '2023-10-29', 1600.00, 'Monthly Fee1', ''),
-(247, 1234, 2023, 'October', '2023-10-29', 1500.00, 'Monthly Fee', ''),
-(248, 1234, 2023, 'October', '2023-10-29', 2999.00, 'Monthly Fee', ''),
-(249, 1234, 2023, 'October', '2023-10-29', 2999.00, 'Monthly Fee', '');
+(252, 2, 2023, 'October', '2023-10-29', 2500.00, 'Admission Fee', ''),
+(253, 2, 2023, 'October', '2023-10-29', 7400.00, 'Monthly Fee1', ''),
+(254, 3, 2023, 'October', '2023-10-29', 5000.00, 'Admission Fee', ''),
+(255, 3, 2023, 'October', '2023-10-29', 3100.00, 'Monthly Fee1', ''),
+(256, 1, 2023, 'October', '2023-10-29', 5000.00, 'Monthly Fee', ''),
+(257, 3, 2023, 'October', '2023-10-29', 3000.00, 'Monthly Fee', ''),
+(258, 3, 2023, 'October', '2023-10-29', 3000.00, 'Monthly Fee', ''),
+(259, 2, 2023, 'October', '2023-10-29', 7300.00, 'Monthly Fee', ''),
+(260, 3, 2023, 'October', '2023-10-29', 3000.00, 'Monthly Fee', ''),
+(261, 3, 2023, 'October', '2023-10-29', 6500.00, 'Monthly Fee', ''),
+(262, 1, 2023, 'October', '2023-10-29', 2500.00, 'Admission Fee', ''),
+(263, 1, 2023, 'October', '2023-10-29', 7400.00, 'Monthly Fee1', '');
 
 -- --------------------------------------------------------
 
@@ -590,12 +595,24 @@ CREATE TABLE `student_payment_history` (
 --
 
 INSERT INTO `student_payment_history` (`id`, `index_number`, `grade_id`, `subject_id`, `teacher_id`, `subject_fee`, `subtotal`, `_status`, `month`, `year`, `date`, `invoice_number`) VALUES
-(627, 1234, 16, 24, 18, 1500.00, 1500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 1),
-(628, 1234, 16, 24, 18, 1500.00, 1500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 2),
-(629, 1234, 16, 24, 18, 1500.00, 1500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 3),
-(630, 1234, 16, 25, 18, 1499.00, 1499.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 3),
-(631, 1234, 16, 24, 18, 1500.00, 1500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 4),
-(632, 1234, 16, 25, 18, 1499.00, 1499.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 4);
+(634, 2, 19, 27, 21, 2000.00, 2000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 1),
+(635, 2, 19, 28, 21, 2500.00, 2500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 1),
+(636, 2, 19, 29, 21, 2800.00, 2800.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 1),
+(637, 3, 20, 27, 22, 3000.00, 3000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 254),
+(638, 1, 18, 27, 20, 1500.00, 1500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 255),
+(639, 1, 18, 28, 20, 1700.00, 1700.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 255),
+(640, 1, 18, 29, 20, 1800.00, 1800.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 255),
+(641, 3, 20, 27, 22, 3000.00, 3000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 256),
+(642, 3, 20, 27, 22, 3000.00, 3000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 257),
+(643, 2, 19, 27, 21, 2000.00, 2000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 258),
+(644, 2, 19, 28, 21, 2500.00, 2500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 258),
+(645, 2, 19, 29, 21, 2800.00, 2800.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 258),
+(646, 3, 20, 27, 22, 3000.00, 3000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 259),
+(647, 3, 20, 27, 22, 3000.00, 3000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 260),
+(648, 3, 20, 29, 22, 3500.00, 3500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 260),
+(649, 1, 19, 27, 21, 2000.00, 2000.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 262),
+(650, 1, 19, 28, 21, 2500.00, 2500.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 262),
+(651, 1, 19, 29, 21, 2800.00, 2800.00, 'Monthly Fee', 'October', 2023, '2023-10-29', 262);
 
 -- --------------------------------------------------------
 
@@ -617,8 +634,14 @@ CREATE TABLE `student_subject` (
 --
 
 INSERT INTO `student_subject` (`id`, `index_number`, `_status`, `sr_id`, `year`, `reg_month`) VALUES
-(246, 1234, '', 39, 2023, ''),
-(247, 1234, '', 40, 2023, '');
+(252, 2, '', 52, 2023, ''),
+(253, 2, '', 53, 2023, ''),
+(254, 2, '', 54, 2023, ''),
+(256, 3, '', 55, 2023, ''),
+(257, 3, '', 56, 2023, ''),
+(264, 1, '', 52, 2023, ''),
+(265, 1, '', 53, 2023, ''),
+(266, 1, '', 54, 2023, '');
 
 -- --------------------------------------------------------
 
@@ -636,9 +659,9 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id`, `name`) VALUES
-(24, 'English'),
-(25, 'Urdu'),
-(26, 'Computer Science');
+(27, 'English'),
+(28, 'Urdu'),
+(29, 'Computer Science');
 
 -- --------------------------------------------------------
 
@@ -659,9 +682,15 @@ CREATE TABLE `subject_routing` (
 --
 
 INSERT INTO `subject_routing` (`id`, `grade_id`, `subject_id`, `teacher_id`, `fee`) VALUES
-(39, 16, 24, 18, 1500.00),
-(40, 16, 25, 18, 1499.00),
-(41, 16, 26, 18, 15000000.00);
+(49, 18, 27, 20, 1500.00),
+(50, 18, 28, 20, 1700.00),
+(51, 18, 29, 20, 1800.00),
+(52, 19, 27, 21, 2000.00),
+(53, 19, 28, 21, 2500.00),
+(54, 19, 29, 21, 2800.00),
+(55, 20, 27, 22, 3000.00),
+(56, 20, 29, 22, 3500.00),
+(57, 20, 28, 22, 3800.00);
 
 -- --------------------------------------------------------
 
@@ -687,8 +716,9 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `full_name`, `i_name`, `gender`, `address`, `phone`, `email`, `image_name`, `index_number`, `reg_date`) VALUES
-(18, 'Abdullah Khan', 'Abdullah-123', 'Male', 'City', '314-782-8465', 'abdullah@gmail.com', 'uploads/20231029122340.jpg', 123, '2023-10-29'),
-(19, '145', '145', 'Male', '145', '145-145-1456', '145@gmail.com', 'uploads/20231029021931.jpg', 145, '2023-10-29');
+(20, 'Teacher 1', 'Teacher1-1234', 'Male', 'Latifabad', '304-857-9548', 'Teacher1@gmail.com', 'uploads/20231029094659.jpeg', 1234, '2023-10-29'),
+(21, 'Teacher 2', 'Teacher2-12345', 'Male', 'Latifabad 2', '304-854-8796', 'Teacher2@gmail.com', 'uploads/20231029095454.jpeg', 12345, '2023-10-29'),
+(22, 'Teacher 3', 'Teacher3-123456', 'Male', 'Latifabad 3', '315-151-5584', 'Teacher3@gmail.com', 'uploads/20231029095543.jpeg', 123456, '2023-10-29');
 
 -- --------------------------------------------------------
 
@@ -712,8 +742,10 @@ CREATE TABLE `teacher_attendance` (
 --
 
 INSERT INTO `teacher_attendance` (`id`, `index_number`, `date`, `month`, `year`, `time`, `_status1`, `_status2`) VALUES
-(1, 123, '2023-10-29', 'October', 2023, '01:50:24', 'intime', 'Present'),
-(2, 123, '2023-10-29', 'October', 2023, '01:51:01', 'outtime', 'Present');
+(3, 1234, '2023-10-29', 'October', 2023, '10:33:36', 'intime', 'Present'),
+(4, 12345, '2023-10-29', 'October', 2023, '10:33:41', 'intime', 'Present'),
+(5, 123456, '2023-10-29', 'October', 2023, '10:33:44', 'intime', 'Present'),
+(6, 123456, '2023-10-29', 'October', 2023, '10:33:49', 'outtime', 'Present');
 
 -- --------------------------------------------------------
 
@@ -730,13 +762,6 @@ CREATE TABLE `teacher_salary` (
   `paid` double(11,2) NOT NULL,
   `_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `teacher_salary`
---
-
-INSERT INTO `teacher_salary` (`id`, `index_number`, `month`, `year`, `date`, `paid`, `_status`) VALUES
-(4, 123, 'October', 2023, '2023-10-29', 1349.55, 'Advance');
 
 -- --------------------------------------------------------
 
@@ -761,14 +786,6 @@ CREATE TABLE `teacher_salary_history` (
   `invoice_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `teacher_salary_history`
---
-
-INSERT INTO `teacher_salary_history` (`id`, `index_number`, `grade_id`, `subject_id`, `subject_fee`, `student_count`, `hall_charge`, `subtotal`, `paid`, `_status`, `month`, `year`, `date`, `invoice_number`) VALUES
-(11, 123, 16, 24, 1500.00, 1, 10, 1350.00, 1349.55, 'Advance', 'October', 2023, '2023-10-29', 1),
-(12, 123, 16, 25, 1499.00, 1, 10, 1349.10, 1349.55, 'Advance', 'October', 2023, '2023-10-29', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -791,7 +808,10 @@ CREATE TABLE `timetable` (
 --
 
 INSERT INTO `timetable` (`id`, `grade_id`, `day`, `subject_id`, `teacher_id`, `classroom_id`, `start_time`, `end_time`) VALUES
-(85, 16, 'Monday', 24, 18, 26, 8.00, 9.00);
+(88, 18, 'Monday', 27, 20, 29, 9.00, 10.00),
+(89, 19, 'Monday', 28, 21, 29, 10.00, 11.00),
+(90, 20, 'Monday', 29, 22, 29, 11.00, 12.00),
+(92, 18, 'Tuesday', 29, 20, 30, 9.00, 10.00);
 
 -- --------------------------------------------------------
 
@@ -812,10 +832,15 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `type`) VALUES
 (29, 'admin@gmail.com', '12345', 'Admin'),
-(78, 'abdullah@gmail.com', '12345', 'Teacher'),
-(79, 'student@gmail.com', '12345', 'Student'),
-(80, 'father@gmail.com', '12345', 'Parents'),
-(81, '145@gmail.com', '12345', 'Teacher');
+(84, 'Teacher1@gmail.com', '12345', 'Teacher'),
+(85, 'Teacher2@gmail.com', '12345', 'Teacher'),
+(86, 'Teacher3@gmail.com', '12345', 'Teacher'),
+(87, 'Student1@gmail.com', '12345', 'Student'),
+(88, 'Student1Father1@gmail.com', '12345', 'Parents'),
+(89, 'Student2@gmail.com', '12345', 'Student'),
+(90, 'Student2Father2@gmail.com', '12345', 'Parents'),
+(91, 'Student3@gmail.com', '12345', 'Student'),
+(92, 'Student3Father3@gmail.com', '12345', 'Parents');
 
 --
 -- Indexes for dumped tables
@@ -1045,7 +1070,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `class_room`
 --
 ALTER TABLE `class_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -1069,25 +1094,25 @@ ALTER TABLE `event_category_type`
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `exam_range_grade`
 --
 ALTER TABLE `exam_range_grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `exam_timetable`
 --
 ALTER TABLE `exam_timetable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `group_message`
@@ -1099,7 +1124,7 @@ ALTER TABLE `group_message`
 -- AUTO_INCREMENT for table `main_notifications`
 --
 ALTER TABLE `main_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `my_friends`
@@ -1123,37 +1148,37 @@ ALTER TABLE `online_chat`
 -- AUTO_INCREMENT for table `parents`
 --
 ALTER TABLE `parents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `payment_notifications`
 --
 ALTER TABLE `payment_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `petty_cash`
 --
 ALTER TABLE `petty_cash`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `petty_cash_history`
 --
 ALTER TABLE `petty_cash_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `student_attendance`
 --
 ALTER TABLE `student_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `student_exam`
@@ -1165,49 +1190,49 @@ ALTER TABLE `student_exam`
 -- AUTO_INCREMENT for table `student_grade`
 --
 ALTER TABLE `student_grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `student_payment`
 --
 ALTER TABLE `student_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT for table `student_payment_history`
 --
 ALTER TABLE `student_payment_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=633;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=652;
 
 --
 -- AUTO_INCREMENT for table `student_subject`
 --
 ALTER TABLE `student_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `subject_routing`
 --
 ALTER TABLE `subject_routing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `teacher_attendance`
 --
 ALTER TABLE `teacher_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teacher_salary`
@@ -1225,13 +1250,13 @@ ALTER TABLE `teacher_salary_history`
 -- AUTO_INCREMENT for table `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
